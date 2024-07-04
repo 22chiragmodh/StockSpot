@@ -7,12 +7,14 @@ import {
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
-import { PaperProvider } from "react-native-paper";
+import { useEffect, createContext, useState } from "react";
+import { PaperProvider, TextInput } from "react-native-paper";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/components/useColorScheme";
 import { theme } from "@/theme";
+import { SearchableStock } from "@/data";
+import { searchStocks } from "@/utils/searchStock";
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -50,17 +52,58 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+export const Storecontext = createContext<{
+  searchQuery: string;
+  setSearchQuery: (str: string) => void;
+  searchdStocks: SearchableStock[];
+  setSearchedStocks: (stocks: SearchableStock[]) => void;
+}>({
+  searchQuery: "",
+  setSearchQuery: () => {},
+  searchdStocks: [],
+  setSearchedStocks: () => {},
+});
+
 function RootLayoutNav() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchdStocks, setSearchedStocks] = useState<SearchableStock[]>([]);
   const colorScheme = useColorScheme();
 
   return (
     <PaperProvider theme={theme}>
       <ThemeProvider value={DarkTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="search" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-        </Stack>
+        <Storecontext.Provider
+          value={{
+            searchQuery,
+            setSearchQuery,
+            searchdStocks,
+            setSearchedStocks,
+          }}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="search"
+              options={{
+                headerTitle: () => (
+                  <TextInput
+                    mode="outlined"
+                    placeholder="Search Stock...."
+                    autoFocus
+                    dense
+                    style={{ width: "100%" }}
+                    onChangeText={(text: string) => {
+                      setSearchQuery(text);
+                      const stocks = searchStocks(text);
+                      setSearchedStocks(stocks);
+                    }}
+                  />
+                ),
+              }}
+            />
+            <Stack.Screen name="[ticker]" options={{ headerShown: false }} />
+          </Stack>
+        </Storecontext.Provider>
       </ThemeProvider>
     </PaperProvider>
   );
