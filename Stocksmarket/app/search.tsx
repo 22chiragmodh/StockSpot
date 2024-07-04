@@ -1,9 +1,10 @@
-import { StyleSheet, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { Platform, StyleSheet, View } from "react-native";
 
 import EditScreenInfo from "@/components/EditScreenInfo";
 
-export default function TabTwoScreen() {
-  return <View></View>;
+export default function SearchScreen() {
+  return <View style={styles.container}></View>;
 }
 
 const styles = StyleSheet.create({
