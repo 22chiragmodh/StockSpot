@@ -34,7 +34,7 @@ This project uses the Axiforma font.
 
 This project utilizes several third-party libraries to enhance its functionality and development experience:
 
-#### 1. [React Native Paper](https://callstack.github.io/react-native-paper/docs/guides/getting-started/) 🔗
+#### 1. [React Native Paper](https://callstack.github.io/tamagui/docs/guides/getting-started/) 🔗
 
 - **Why:**
   - Provides a collection of customizable and easily implementable UI components.

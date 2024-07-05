@@ -8,7 +8,7 @@ import {
   useWindowDimensions,
   View,
 } from "react-native";
-import { Text } from "react-native-paper";
+import { Text } from "tamagui";
 
 export default function TickerScreen() {
   const { productId } = useLocalSearchParams();
