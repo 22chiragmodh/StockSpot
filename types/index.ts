@@ -24,3 +24,9 @@ export type CompanyOverview = {
   MarketCapitalization: string;
   // Add other fields you expect to receive from the API
 };
+
+export type CompanyMetadata = {
+  name: string;
+  ticker: string;
+  image: string;
+};

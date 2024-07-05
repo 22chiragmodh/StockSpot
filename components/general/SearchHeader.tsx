@@ -1,13 +1,10 @@
 import { IconSearch } from "@tabler/icons-react-native";
 import { router } from "expo-router";
 import { Pressable, View } from "react-native";
-import { H2, H4, Text } from "tamagui";
+import { H2, Image } from "tamagui";
+import Constants from "expo-constants";
 
-interface NavbarProps {
-  title: string;
-}
-
-export const SearchHeader: React.FC<NavbarProps> = ({ title }) => {
+export const SearchHeader: React.FC = () => {
   return (
     <View
       style={{
@@ -16,22 +13,24 @@ export const SearchHeader: React.FC<NavbarProps> = ({ title }) => {
         alignItems: "center",
         width: "100%",
         padding: 16,
-        paddingVertical: 20,
         borderBottomColor: "#E5E5E5",
-        borderBottomWidth: 1,
+        marginTop: Constants.statusBarHeight,
       }}
     >
       <View
         style={{
-          flexDirection: "column",
-          gap: 0,
+          flexDirection: "row",
+          gap: 8,
+          alignItems: "center",
         }}
       >
-        <H2>Stockspot</H2>
+        <H2 style={{ marginTop: 6 }} fontSize={24}>
+          Stockspot
+        </H2>
       </View>
 
       <Pressable onPress={() => router.push("/search")}>
-        <IconSearch size={24} />
+        <IconSearch size={24} color="black" />
       </Pressable>
     </View>
   );

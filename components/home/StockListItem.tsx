@@ -1,33 +1,38 @@
 import React, { CSSProperties } from "react";
-import { Pressable, useWindowDimensions, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 import { router } from "expo-router";
-import { H3, H4, H6, Image, Text } from "tamagui";
+import { H3, H4, Image, Text } from "tamagui";
 
 import { StockData } from "@/types";
 import { formatCurrency } from "@/utils/formatCurrenmcy";
-import { IconTriangle, IconTriangleFilled } from "@tabler/icons-react-native";
-import { H2 } from "tamagui";
-import { useCompanyMetaFromTicker } from "@/hooks/query";
+import { IconTriangleFilled } from "@tabler/icons-react-native";
+import {
+  useCompanyMetaFromTicker,
+  useTopGainersAndLosers,
+} from "@/hooks/query";
 import { Skeleton } from "moti/skeleton";
 
-export const StockCard = ({ data }: { data: StockData }) => {
+const ICON_SIZE = 40;
+export const StockListItem = ({ data }: { data: StockData }) => {
   const isPositiveGain = parseFloat(data.change_amount) > 0;
-  const ICON_SIZE = 55;
-
   const { companyData } = useCompanyMetaFromTicker(data.ticker);
-  const { width } = useWindowDimensions();
 
   return (
-    <Pressable onPress={() => router.push(`/${data.ticker}`)}>
+    <Pressable
+      onPress={() => router.push(`/${data.ticker}`)}
+      style={{
+        width: "100%",
+      }}
+    >
       <View
         style={{
-          flexDirection: "column",
-          gap: 24,
-          backgroundColor: "#fff",
-          borderRadius: 16,
-          padding: 16,
-          width: 200,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 20,
+          justifyContent: "space-between",
+          width: "100%",
         }}
       >
         <View
@@ -42,6 +47,8 @@ export const StockCard = ({ data }: { data: StockData }) => {
                 uri: companyData.image,
               }}
               borderRadius={ICON_SIZE / 2}
+              height={ICON_SIZE}
+              width={ICON_SIZE}
               style={
                 {
                   flex: 1,
@@ -60,22 +67,24 @@ export const StockCard = ({ data }: { data: StockData }) => {
             />
           )}
         </View>
-        <View>
-          <H3>{data.ticker}</H3>
+        <View
+          style={{
+            marginRight: "auto",
+          }}
+        >
           {companyData?.name ? (
-            <H4 color="#888" fontWeight={"$2"}>
-              {companyData.name}
-            </H4>
+            <H3>{companyData.name}</H3>
           ) : (
             <Skeleton colorMode="light" width={100} height={25} />
           )}
+          <H4 color="#888" fontWeight={"$2"}>
+            {data.ticker}
+          </H4>
         </View>
         <View
           style={{
-            flexDirection: "row",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            width: "100%",
+            flexDirection: "column",
+            alignItems: "flex-end",
           }}
         >
           <Text>{formatCurrency(data.price)}</Text>
