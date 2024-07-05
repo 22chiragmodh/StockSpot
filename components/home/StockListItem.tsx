@@ -7,13 +7,10 @@ import { H3, H4, Image, Text } from "tamagui";
 import { StockData } from "@/types";
 import { formatCurrency } from "@/utils/formatCurrenmcy";
 import { IconTriangleFilled } from "@tabler/icons-react-native";
-import {
-  useCompanyMetaFromTicker,
-  useTopGainersAndLosers,
-} from "@/hooks/query";
+import { useCompanyMetaFromTicker, useHighlights } from "@/hooks/query";
 import { Skeleton } from "moti/skeleton";
 
-const ICON_SIZE = 40;
+const ICON_SIZE = 36;
 export const StockListItem = ({ data }: { data: StockData }) => {
   const isPositiveGain = parseFloat(data.change_amount) > 0;
   const { companyData } = useCompanyMetaFromTicker(data.ticker);
@@ -73,11 +70,11 @@ export const StockListItem = ({ data }: { data: StockData }) => {
           }}
         >
           {companyData?.name ? (
-            <H3>{companyData.name}</H3>
+            <H3 fontSize={18}>{companyData.name}</H3>
           ) : (
             <Skeleton colorMode="light" width={100} height={25} />
           )}
-          <H4 color="#888" fontWeight={"$2"}>
+          <H4 color="#888" fontWeight={400} fontSize={15}>
             {data.ticker}
           </H4>
         </View>
@@ -87,7 +84,7 @@ export const StockListItem = ({ data }: { data: StockData }) => {
             alignItems: "flex-end",
           }}
         >
-          <Text>{formatCurrency(data.price)}</Text>
+          <Text fontSize={16}>{formatCurrency(data.price)}</Text>
           <View
             style={{
               flexDirection: "row",
