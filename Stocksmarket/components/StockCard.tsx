@@ -12,14 +12,14 @@ export const StockCard = ({
   price,
   priceChange,
   priceChangePercentage,
-  image,
-}: {
+}: // image,
+{
   ticker: string;
   companyName: string;
   price: number;
   priceChange: number;
   priceChangePercentage: number;
-  image: string;
+  // image: string;
 }) => {
   const { width } = useWindowDimensions();
   return (
@@ -27,16 +27,17 @@ export const StockCard = ({
       style={{
         flexDirection: "row",
         marginVertical: 10,
-        paddingHorizontal: 10,
+        paddingHorizontal: 15,
+
         height: 60,
       }}
       onPress={() => router.push(`/${ticker}`)}
     >
-      <Image
+      {/* <Image
         source={image}
         style={{ height: 50, width: 50 }}
         contentFit="contain"
-      />
+      /> */}
 
       <View
         style={{
@@ -47,19 +48,30 @@ export const StockCard = ({
         }}
       >
         <View>
-          <Text variant="titleMedium" style={{ fontWeight: "bold" }}>
+          <Text
+            variant="titleMedium"
+            style={{ fontWeight: "bold", fontFamily: "Axiforma" }}
+          >
             {ticker}
           </Text>
-          <Text variant="labelMedium">{companyName}</Text>
+          <Text variant="labelMedium" style={{ fontFamily: "Axiforma" }}>
+            {companyName}
+          </Text>
         </View>
 
         <View style={{ alignItems: "flex-end" }}>
-          <Text variant="titleMedium" style={{ fontWeight: "bold" }}>
+          <Text
+            variant="titleMedium"
+            style={{ fontWeight: "bold", fontFamily: "Axiforma" }}
+          >
             {formatCurrency(price)}
           </Text>
           <Text
             variant="labelMedium"
-            style={{ color: priceChange < 0 ? "red" : "lightgreen" }}
+            style={{
+              color: priceChange < 0 ? "red" : "lightgreen",
+              fontFamily: "Axiforma",
+            }}
           >
             {formatCurrency(priceChange)} {priceChangePercentage.toFixed(2)}%
           </Text>

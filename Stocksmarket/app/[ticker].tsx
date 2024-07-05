@@ -14,15 +14,21 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import { selectstock, selectstockPrices } from "@/utils/searchStock";
 import { formatCurrency } from "@/utils/formatCurrenmcy";
+import { useOverview } from "@/helper/useOverview";
 export default function TickerScreen() {
   const { ticker } = useLocalSearchParams();
-  const stock = selectstock(ticker as string);
-  const stockPrices = selectstockPrices(ticker as string);
+  // const stock = selectstock(ticker as string);
+  // const stockPrices = selectstockPrices(ticker as string);
   const { width } = useWindowDimensions();
 
-  const positiveOverallPriceChange =
-    stockPrices &&
-    stockPrices[0].value < stockPrices[stockPrices.length - 1].value;
+  const { overview, isLoading, isError } = useOverview(ticker as string);
+
+  if (isLoading) return <Text>Loading...</Text>;
+  if (isError) return <Text>Error loading data!</Text>;
+
+  // const positiveOverallPriceChange =
+  //   stockPrices &&
+  //   stockPrices[0].value < stockPrices[stockPrices.length - 1].value;
 
   return (
     <SafeAreaView style={{ flex: 1, marginHorizontal: 20, marginBottom: 10 }}>
@@ -49,25 +55,25 @@ export default function TickerScreen() {
         </Pressable>
       </View>
 
-      {stock ? (
+      {overview ? (
         <FlatList
           data={[1]}
           renderItem={() => (
             <View>
               <View style={{ flexDirection: "row" }}>
-                <Image
+                {/* <Image
                   source={stock.image}
                   style={{ height: 50, width: 50 }}
                   contentFit="contain"
-                />
+                /> */}
                 <View style={{ paddingLeft: 20 }}>
                   <Text variant="titleMedium" style={{ fontWeight: "bold" }}>
-                    {stock.ticker}
+                    {overview.Symbol}
                   </Text>
-                  <Text variant="labelMedium">{stock.companyName}</Text>
+                  <Text variant="labelMedium">{overview.Name}</Text>
                 </View>
               </View>
-              <View style={{ paddingTop: 20 }}>
+              {/* <View style={{ paddingTop: 20 }}>
                 <Text variant="headlineLarge" style={{ fontWeight: "bold" }}>
                   {formatCurrency(stock.price)}
                 </Text>
@@ -85,8 +91,8 @@ export default function TickerScreen() {
                   {formatCurrency(stock.priceChange)}{" "}
                   {stock.priceChangePercentage.toFixed(2)}%
                 </Text>
-              </View>
-              <View style={{ paddingTop: 20 }}>
+              </View> */}
+              {/* <View style={{ paddingTop: 20 }}>
                 <LineChart
                   areaChart
                   data={stockPrices ?? []}
@@ -161,7 +167,7 @@ export default function TickerScreen() {
                     },
                   }}
                 />
-              </View>
+              </View> */}
 
               {/* <FlatList
                 data={options}
@@ -174,10 +180,10 @@ export default function TickerScreen() {
               /> */}
 
               <View style={{ marginTop: 20 }}>
-                <Text variant="titleMedium" style={{ fontWeight: "bold" }}>
+                {/* <Text variant="titleMedium" style={{ fontWeight: "bold" }}>
                   CEO
                 </Text>
-                <Text>{stock.ceo}</Text>
+                <Text>{stock.ceo}</Text> */}
 
                 <Text
                   variant="titleMedium"
@@ -185,7 +191,7 @@ export default function TickerScreen() {
                 >
                   Exchange
                 </Text>
-                <Text>{stock.exchange}</Text>
+                <Text>{overview.Exchange}</Text>
 
                 <Text
                   variant="titleMedium"
@@ -193,7 +199,7 @@ export default function TickerScreen() {
                 >
                   Sector
                 </Text>
-                <Text>{stock.sector}</Text>
+                <Text>{overview.Sector}</Text>
 
                 <Text
                   variant="titleMedium"
@@ -201,7 +207,7 @@ export default function TickerScreen() {
                 >
                   Industry
                 </Text>
-                <Text>{stock.industry}</Text>
+                <Text>{overview.Industry}</Text>
 
                 <Text
                   variant="titleMedium"
@@ -209,17 +215,43 @@ export default function TickerScreen() {
                 >
                   Location
                 </Text>
-                <Text>
-                  {stock.city}, {stock.state}
-                </Text>
+                <Text>{overview.Address}</Text>
 
                 <Text
                   variant="titleMedium"
                   style={{ fontWeight: "bold", marginTop: 5 }}
                 >
-                  IPO
+                  Market Cap
                 </Text>
-                <Text>{stock.ipoDate}</Text>
+                <Text>{overview.MarketCapitalization}</Text>
+                <Text
+                  variant="titleMedium"
+                  style={{ fontWeight: "bold", marginTop: 5 }}
+                >
+                  PE Ratio
+                </Text>
+                <Text>{overview.PERatio}</Text>
+                <Text
+                  variant="titleMedium"
+                  style={{ fontWeight: "bold", marginTop: 5 }}
+                >
+                  Beta
+                </Text>
+                <Text>{overview.Beta}</Text>
+                <Text
+                  variant="titleMedium"
+                  style={{ fontWeight: "bold", marginTop: 5 }}
+                >
+                  Dividend Yield
+                </Text>
+                <Text>{overview.DividendYield}</Text>
+                <Text
+                  variant="titleMedium"
+                  style={{ fontWeight: "bold", marginTop: 5 }}
+                >
+                  Profit Margin
+                </Text>
+                <Text>{overview.ProfitMargin}</Text>
 
                 <Text
                   variant="titleMedium"
@@ -227,7 +259,7 @@ export default function TickerScreen() {
                 >
                   Description
                 </Text>
-                <Text>{stock.description}</Text>
+                <Text>{overview.Description}</Text>
               </View>
             </View>
           )}
