@@ -1,18 +1,15 @@
+import { useOverview } from "@/hooks/query";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { router, useLocalSearchParams } from "expo-router";
 import {
+  FlatList,
   Pressable,
   SafeAreaView,
-  View,
-  FlatList,
   useWindowDimensions,
+  View,
 } from "react-native";
-import { Text, Button } from "react-native-paper";
-import { router } from "expo-router";
-import { Image } from "expo-image";
-import { useContext, useState } from "react";
-import { LineChart } from "react-native-gifted-charts";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useLocalSearchParams } from "expo-router";
-import { useOverview } from "@/helper/useOverview";
+import { Text } from "react-native-paper";
+
 export default function TickerScreen() {
   const { productId } = useLocalSearchParams();
   // const stock = selectstock(ticker as string);

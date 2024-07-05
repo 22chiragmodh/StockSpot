@@ -4,8 +4,8 @@ import { FlatList, View } from "react-native";
 import { Text } from "react-native-paper";
 
 import { StockCard } from "@/components/home/StockCard";
-import { useTopGainersAndLosers } from "@/helper/useTopGainersAndLosers";
 import { Navbar } from "@/components/Navbar";
+import { useTopGainersAndLosers } from "@/hooks/query";
 
 export default function HomeScreen() {
   const { gainers, losers, isLoading, isError } = useTopGainersAndLosers();
