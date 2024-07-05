@@ -1,7 +1,6 @@
 import { config } from "@tamagui/config/v3";
 
 import { createFont, createTamagui } from "tamagui";
-import { theme } from "./theme";
 
 const axiformaFont = createFont({
   family: "Axiforma",
@@ -13,18 +12,21 @@ const axiformaFont = createFont({
     5: 18,
   },
   lineHeight: {
-    // 1 will be 22
+    1: 22,
     2: 22,
   },
   weight: {
     1: "300",
-    // 2 will be 300
-    3: "600",
+    2: "400",
+    3: "500",
+    4: "600",
+    5: "700",
+    6: "800",
   },
   letterSpacing: {
     1: 0,
     2: -1,
-    // 3 will be -1
+    3: -1,
   },
 });
 export const tamaguiConfig = createTamagui({

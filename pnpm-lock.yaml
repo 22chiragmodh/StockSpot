@@ -44,6 +44,9 @@ dependencies:
   expo:
     specifier: ~51.0.18
     version: 51.0.18(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+  expo-constants:
+    specifier: ~16.0.2
+    version: 16.0.2(expo@51.0.18)
   expo-font:
     specifier: ~12.0.7
     version: 12.0.7(expo@51.0.18)
@@ -71,6 +74,9 @@ dependencies:
   expo-web-browser:
     specifier: ~13.0.3
     version: 13.0.3(expo@51.0.18)
+  moti:
+    specifier: ^0.29.0
+    version: 0.29.0(react-dom@18.2.0)(react-native-reanimated@3.10.1)(react@18.2.0)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -2251,7 +2257,7 @@ packages:
     peerDependencies:
       expo-modules-autolinking: '>=0.8.1'
     dependencies:
-      '@expo/config': 9.0.1
+      '@expo/config': 9.0.2
       '@expo/config-plugins': 8.0.7
       '@expo/config-types': 51.0.2
       '@expo/image-utils': 0.5.1

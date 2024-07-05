@@ -1,13 +1,12 @@
 import React from "react";
-import { FlatList, View } from "react-native";
+import { StatusBar, View } from "react-native";
 
 import { Text } from "tamagui";
-import { Button } from "tamagui";
 
-import { StockCard } from "@/components/home/StockCard";
 import { SearchHeader } from "@/components/general/SearchHeader";
+import GainersAndLosers from "@/components/home/GainersAndLosers";
+import { TrendingList } from "@/components/home/Trending";
 import { useTopGainersAndLosers } from "@/hooks/query";
-import { StatusBar } from "expo-status-bar";
 
 export default function HomeScreen() {
   const { gainers, losers, isLoading, isError } = useTopGainersAndLosers();
@@ -17,22 +16,18 @@ export default function HomeScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#F3F4F5" }}>
-      <StatusBar />
-      <SearchHeader title="Hii" />
-      <FlatList
-        data={gainers}
-        keyExtractor={(item) => item.ticker}
-        renderItem={({ item }) => (
-          <StockCard
-            ticker={item.ticker}
-            companyName={item.ticker}
-            price={Number(item.price)}
-            priceChange={Number(item.change_amount)}
-            priceChangePercentage={Number(item.change_percentage)}
-          />
-        )}
-      />
-      <Button theme="blue">Hello world</Button>
+      <SearchHeader />
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 20,
+          padding: 16,
+        }}
+      >
+        <GainersAndLosers />
+        <TrendingList />
+      </View>
     </View>
   );
 }
