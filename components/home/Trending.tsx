@@ -22,7 +22,7 @@ export const TrendingList = () => {
           width: "100%",
         }}
       >
-        <H3>Trending Today</H3>
+        <H3 fontSize={19}>Trending Today</H3>
         <Button unstyled color="#2B77EF" onPress={() => router.push("/search")}>
           View All
         </Button>
