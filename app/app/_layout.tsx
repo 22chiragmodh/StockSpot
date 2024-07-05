@@ -13,8 +13,6 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/components/useColorScheme";
 import { theme } from "@/theme";
-import { SearchableStock } from "@/data";
-import { searchStocks } from "@/utils/searchStock";
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -56,19 +54,13 @@ export default function RootLayout() {
 export const Storecontext = createContext<{
   searchQuery: string;
   setSearchQuery: (str: string) => void;
-  searchdStocks: SearchableStock[];
-  setSearchedStocks: (stocks: SearchableStock[]) => void;
 }>({
   searchQuery: "",
   setSearchQuery: () => {},
-  searchdStocks: [],
-  setSearchedStocks: () => {},
 });
 
 function RootLayoutNav() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchdStocks, setSearchedStocks] = useState<SearchableStock[]>([]);
-  const colorScheme = useColorScheme();
 
   return (
     <PaperProvider theme={theme}>
@@ -77,13 +69,11 @@ function RootLayoutNav() {
           value={{
             searchQuery,
             setSearchQuery,
-            searchdStocks,
-            setSearchedStocks,
           }}
         >
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen
+            {/* <Stack.Screen
               name="search"
               options={{
                 headerTitle: () => (
@@ -96,14 +86,12 @@ function RootLayoutNav() {
                     style={{ width: "90%" }}
                     onChangeText={(text: string) => {
                       setSearchQuery(text);
-                      const stocks = searchStocks(text);
-                      setSearchedStocks(stocks);
                     }}
                   />
                 ),
               }}
-            />
-            <Stack.Screen name="Product" options={{ headerShown: false }} />
+            /> */}
+            <Stack.Screen name="[productId]/index" options={{ headerShown: false }} />
           </Stack>
         </Storecontext.Provider>
       </ThemeProvider>

@@ -12,8 +12,6 @@ import { useContext, useState } from "react";
 import { LineChart } from "react-native-gifted-charts";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
-import { selectstock, selectstockPrices } from "@/utils/searchStock";
-import { formatCurrency } from "@/utils/formatCurrenmcy";
 import { useOverview } from "@/helper/useOverview";
 export default function TickerScreen() {
   const { productId } = useLocalSearchParams();
