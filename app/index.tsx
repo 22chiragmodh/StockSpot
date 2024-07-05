@@ -1,11 +1,13 @@
 import React from "react";
 import { FlatList, View } from "react-native";
 
-import { Text } from "react-native-paper";
+import { Text } from "tamagui";
+import { Button } from "tamagui";
 
 import { StockCard } from "@/components/home/StockCard";
-import { Navbar } from "@/components/Navbar";
+import { SearchHeader } from "@/components/general/SearchHeader";
 import { useTopGainersAndLosers } from "@/hooks/query";
+import { StatusBar } from "expo-status-bar";
 
 export default function HomeScreen() {
   const { gainers, losers, isLoading, isError } = useTopGainersAndLosers();
@@ -14,9 +16,9 @@ export default function HomeScreen() {
   if (isError) return <Text>Error loading data!</Text>;
 
   return (
-    <View style={{ flex: 1 }}>
-      <Navbar title="Hii" />
-      {/* create tabbar */}
+    <View style={{ flex: 1, backgroundColor: "#F3F4F5" }}>
+      <StatusBar />
+      <SearchHeader title="Hii" />
       <FlatList
         data={gainers}
         keyExtractor={(item) => item.ticker}
@@ -27,10 +29,10 @@ export default function HomeScreen() {
             price={Number(item.price)}
             priceChange={Number(item.change_amount)}
             priceChangePercentage={Number(item.change_percentage)}
-            // image={item.image}
           />
         )}
       />
+      <Button theme="blue">Hello world</Button>
     </View>
   );
 }

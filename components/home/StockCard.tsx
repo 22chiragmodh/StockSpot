@@ -1,10 +1,9 @@
-import { View, Pressable, useWindowDimensions } from "react-native";
 import React from "react";
+import { Pressable, useWindowDimensions, View } from "react-native";
 
 import { router } from "expo-router";
-import { Text } from "react-native-paper";
+import { H2, H3, H6, Text } from "tamagui";
 
-import { Image } from "expo-image";
 import { formatCurrency } from "@/utils/formatCurrenmcy";
 export const StockCard = ({
   ticker,
@@ -28,53 +27,33 @@ export const StockCard = ({
         flexDirection: "row",
         marginVertical: 10,
         paddingHorizontal: 15,
-
         height: 60,
       }}
       onPress={() => router.push(`/${ticker}`)}
     >
-      {/* <Image
-        source={image}
-        style={{ height: 50, width: 50 }}
-        contentFit="contain"
-      /> */}
-
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          width: width - 75,
-          paddingLeft: 15,
+          width: width - 30,
         }}
       >
         <View>
-          <Text
-            variant="titleMedium"
-            style={{ fontWeight: "bold", fontFamily: "Axiforma" }}
-          >
-            {ticker}
-          </Text>
-          <Text variant="labelMedium" style={{ fontFamily: "Axiforma" }}>
-            {companyName}
-          </Text>
+          <H3 style={{ fontFamily: "Axiforma" }}>{companyName}</H3>
         </View>
 
         <View style={{ alignItems: "flex-end" }}>
-          <Text
-            variant="titleMedium"
-            style={{ fontWeight: "bold", fontFamily: "Axiforma" }}
-          >
+          <Text style={{ fontWeight: "bold", fontFamily: "Axiforma" }}>
             {formatCurrency(price)}
           </Text>
-          <Text
-            variant="labelMedium"
+          <H6
             style={{
               color: priceChange < 0 ? "red" : "lightgreen",
               fontFamily: "Axiforma",
             }}
           >
             {formatCurrency(priceChange)} {priceChangePercentage.toFixed(2)}%
-          </Text>
+          </H6>
         </View>
       </View>
     </Pressable>
