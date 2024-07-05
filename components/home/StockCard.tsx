@@ -16,7 +16,6 @@ export const StockCard = ({ data }: { data: StockData }) => {
   const ICON_SIZE = 55;
 
   const { companyData } = useCompanyMetaFromTicker(data.ticker);
-  const { width } = useWindowDimensions();
 
   return (
     <Pressable onPress={() => router.push(`/${data.ticker}`)}>
@@ -61,9 +60,9 @@ export const StockCard = ({ data }: { data: StockData }) => {
           )}
         </View>
         <View>
-          <H3>{data.ticker}</H3>
+          <H3 fontSize={19}>{data.ticker}</H3>
           {companyData?.name ? (
-            <H4 color="#888" fontWeight={"$2"}>
+            <H4 color="#888" fontWeight={300} fontSize={16}>
               {companyData.name}
             </H4>
           ) : (
@@ -78,7 +77,7 @@ export const StockCard = ({ data }: { data: StockData }) => {
             width: "100%",
           }}
         >
-          <Text>{formatCurrency(data.price)}</Text>
+          <Text fontSize={16}>{formatCurrency(data.price)}</Text>
           <View
             style={{
               flexDirection: "row",

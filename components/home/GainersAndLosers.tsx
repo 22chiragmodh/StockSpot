@@ -1,4 +1,4 @@
-import { useTopGainersAndLosers } from "@/hooks/query";
+import { useHighlights } from "@/hooks/query";
 import React, { useMemo } from "react";
 import { useWindowDimensions } from "react-native";
 import {
@@ -10,6 +10,7 @@ import {
   XStack,
 } from "tamagui";
 import { StockCard } from "./StockCard";
+import { Skeleton } from "moti/skeleton";
 
 const OPTIONS = [
   {
@@ -24,7 +25,7 @@ const OPTIONS = [
 
 const GainersAndLosers = () => {
   const [selected, setSelected] = React.useState(OPTIONS[0].value);
-  const { gainers, losers, isLoading, isError } = useTopGainersAndLosers();
+  const { gainers, losers, isLoadingHighlights } = useHighlights();
 
   const listItems = useMemo(() => {
     if (selected === "gainers") {
@@ -74,9 +75,15 @@ const GainersAndLosers = () => {
           >
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <XStack gap={12}>
-                {listItems?.map((item) => (
-                  <StockCard data={item} key={item.ticker} />
-                ))}
+                {isLoadingHighlights
+                  ? new Array(3)
+                      .fill(0)
+                      .map((_, index) => (
+                        <Skeleton height={220} width={200} colorMode="light" />
+                      ))
+                  : listItems?.map((item) => (
+                      <StockCard data={item} key={item.ticker} />
+                    ))}
               </XStack>
             </ScrollView>
           </Tabs.Content>

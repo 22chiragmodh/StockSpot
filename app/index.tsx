@@ -1,33 +1,75 @@
 import React from "react";
 import { StatusBar, View } from "react-native";
+import LottieView from "lottie-react-native";
 
-import { Text } from "tamagui";
+import { ScrollView, Text } from "tamagui";
 
 import { SearchHeader } from "@/components/general/SearchHeader";
 import GainersAndLosers from "@/components/home/GainersAndLosers";
 import { TrendingList } from "@/components/home/Trending";
-import { useTopGainersAndLosers } from "@/hooks/query";
+import { useHighlights } from "@/hooks/query";
 
+const LOTTIE_SIZE = 250;
 export default function HomeScreen() {
-  const { gainers, losers, isLoading, isError } = useTopGainersAndLosers();
-
-  if (isLoading) return <Text>Loading...</Text>;
-  if (isError) return <Text>Error loading data!</Text>;
+  const { errorLoadingHighlights } = useHighlights();
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#F3F4F5" }}>
-      <SearchHeader />
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 20,
-          padding: 16,
-        }}
-      >
-        <GainersAndLosers />
-        <TrendingList />
+    <ScrollView style={{ flex: 1, backgroundColor: "#F3F4F5" }}>
+      <View>
+        <SearchHeader />
+        {errorLoadingHighlights ? (
+          <View
+            style={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#F3F4F5",
+              gap: 24,
+            }}
+          >
+            <View style={{ height: LOTTIE_SIZE, width: LOTTIE_SIZE }}>
+              <LottieView
+                style={{ width: LOTTIE_SIZE, height: LOTTIE_SIZE }}
+                source={require("../assets/lotties/error.json")}
+                autoPlay
+                loop
+              />
+            </View>
+            <Text
+              fontSize={16}
+              maw="80%"
+              textAlign="center"
+              color="#666666"
+              lineHeight={24}
+            >
+              Something went wrong loading the data. Please try again later.
+            </Text>
+          </View>
+        ) : (
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 24,
+              padding: 16,
+            }}
+          >
+            <GainersAndLosers />
+            <TrendingList />
+            <Text
+              marginTop={24}
+              marginBottom={16}
+              textAlign="center"
+              fontWeight={400}
+              color="#444"
+            >
+              Made with ❤️ by Chirag Modh
+            </Text>
+          </View>
+        )}
       </View>
-    </View>
+    </ScrollView>
   );
 }

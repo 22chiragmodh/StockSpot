@@ -13,7 +13,7 @@ import { genericAPIFetcher } from "@/utils/fetcher";
 import { AxiosResponse } from "axios";
 import useSWR from "swr";
 
-export const useTopGainersAndLosers = () => {
+export const useHighlights = () => {
   const tempTopGainersAndLosersData: TopGainersAndLosersResponse = {
     top_gainers: [
       {
@@ -100,7 +100,7 @@ export const useTopGainersAndLosers = () => {
     ],
   };
 
-  const { data, error } = useSWR<TopGainersAndLosersResponse>(
+  const { data, error, isLoading } = useSWR<TopGainersAndLosersResponse>(
     [
       API_CONSTANTS.ALPHAVANTAGE_DATA,
       "get",
@@ -118,8 +118,8 @@ export const useTopGainersAndLosers = () => {
     gainers: tempTopGainersAndLosersData?.top_gainers,
     losers: tempTopGainersAndLosersData?.top_losers,
     trending: tempTopGainersAndLosersData?.actively_traded,
-    isLoading: !error && !data,
-    isError: error,
+    isLoadingHighlights: isLoading,
+    errorLoadingHighlights: error,
   };
 };
 
