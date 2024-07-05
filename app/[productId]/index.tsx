@@ -16,15 +16,15 @@ import { selectstock, selectstockPrices } from "@/utils/searchStock";
 import { formatCurrency } from "@/utils/formatCurrenmcy";
 import { useOverview } from "@/helper/useOverview";
 export default function TickerScreen() {
-  const { ticker } = useLocalSearchParams();
+  const { productId } = useLocalSearchParams();
   // const stock = selectstock(ticker as string);
   // const stockPrices = selectstockPrices(ticker as string);
   const { width } = useWindowDimensions();
 
-  const { overview, isLoading, isError } = useOverview(ticker as string);
+  const { overview, isLoading, isError } = useOverview(productId as string);
 
   if (isLoading) return <Text>Loading...</Text>;
-  if (isError) return <Text>Error loading data!</Text>;
+  if (isError) return <Text>Error loading data Hehe!</Text>;
 
   // const positiveOverallPriceChange =
   //   stockPrices &&
