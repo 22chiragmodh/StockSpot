@@ -3,9 +3,9 @@ import { FlatList, View } from "react-native";
 
 import { Text } from "react-native-paper";
 
-
-import { StockCard } from "@/components/StockCard";
+import { StockCard } from "@/components/home/StockCard";
 import { useTopGainersAndLosers } from "@/helper/useTopGainersAndLosers";
+import { Navbar } from "@/components/Navbar";
 
 export default function HomeScreen() {
   const { gainers, losers, isLoading, isError } = useTopGainersAndLosers();
@@ -14,7 +14,8 @@ export default function HomeScreen() {
   if (isError) return <Text>Error loading data!</Text>;
 
   return (
-    <View style={{ flex: 1, paddingTop: 20 }}>
+    <View style={{ flex: 1 }}>
+      <Navbar title="Hii" />
       {/* create tabbar */}
       <FlatList
         data={gainers}

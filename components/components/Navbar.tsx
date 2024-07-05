@@ -5,6 +5,7 @@ import { router } from "expo-router";
 interface NavbarProps {
   title: string;
 }
+
 export const Navbar: React.FC<NavbarProps> = ({ title }) => {
   return (
     <View
