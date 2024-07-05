@@ -31,6 +31,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    Axiforma: require("../assets/fonts/Axiforma-Medium.ttf"),
     ...FontAwesome.font,
   });
 
@@ -89,9 +90,10 @@ function RootLayoutNav() {
                   <TextInput
                     mode="outlined"
                     placeholder="Search Stock...."
+                    activeOutlineColor="grey"
                     autoFocus
                     dense
-                    style={{ width: "100%" }}
+                    style={{ width: "90%" }}
                     onChangeText={(text: string) => {
                       setSearchQuery(text);
                       const stocks = searchStocks(text);

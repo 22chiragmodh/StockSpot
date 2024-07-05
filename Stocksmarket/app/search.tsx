@@ -16,8 +16,8 @@ export default function SearchScreen() {
     );
 
   if (searchQuery && searchdStocks.length == 0) return;
-  <View style={styles.container}>
-    <Text>No Stocks Found :(</Text>
+  <View>
+    <Text style={{ color: "white" }}>No Stocks Found :(</Text>
   </View>;
 
   return (
