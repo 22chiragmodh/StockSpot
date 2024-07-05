@@ -1,10 +1,8 @@
-import { View, FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { FlatList, View } from "react-native";
 
 import { Text } from "react-native-paper";
 
-import { stocks } from "@/data";
 
 import { StockCard } from "@/components/StockCard";
 import { useTopGainersAndLosers } from "@/helper/useTopGainersAndLosers";

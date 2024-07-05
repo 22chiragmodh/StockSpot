@@ -13,8 +13,10 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@babel/runtime": "^7.24.7",
     "@expo/metro-runtime": "~3.2.1",
     "@expo/vector-icons": "^14.0.2",
+    "@react-native/assets-registry": "^0.74.85",
     "@react-navigation/native": "^6.0.2",
     "@tamagui/tabs": "^1.101.7",
     "axios": "^1.7.2",
