@@ -82,7 +82,7 @@ function RootLayoutNav() {
           }}
         >
           <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen
               name="search"
               options={{
@@ -103,7 +103,7 @@ function RootLayoutNav() {
                 ),
               }}
             />
-            <Stack.Screen name="[ticker]" options={{ headerShown: false }} />
+            <Stack.Screen name="Product" options={{ headerShown: false }} />
           </Stack>
         </Storecontext.Provider>
       </ThemeProvider>
