@@ -1,8 +1,9 @@
-import { CompanyMetadata } from "@/types";
+import { CompanyMetadata, SearchItem } from "@/types";
 import { dailySeriesData } from "./tempData";
 import {
   CompanyMetadataResponse,
   CompanyOverviewResponse,
+  SearchResponse,
   TimeSeriesDataIntervals,
   TimeSeriesDataResponse,
   TimeSeriesDataResponseDetails,
@@ -312,5 +313,44 @@ export const useCompanyMetaFromTicker = (ticker: string) => {
     companyData: data?.data?.[0] as CompanyMetadata | undefined,
     isLoadingCompanyData: isLoading,
     errorLoadingCompanyData: error,
+  };
+};
+
+export const useSearchResults = (query: string) => {
+  const { data, error, isLoading } = useSWR<AxiosResponse<SearchResponse>>(
+    query
+      ? [
+          API_CONSTANTS.ALPHAVANTAGE_DATA,
+          "get",
+          {
+            params: {
+              function: "SYMBOL_SEARCH",
+              apikey: ALPHAVANTAGE_API_KEY,
+              keywords: query,
+            },
+          },
+        ]
+      : null,
+    genericAPIFetcher
+  );
+
+  const trasformedData: SearchItem[] | undefined = data?.data?.bestMatches?.map(
+    (item) => ({
+      symbol: item["1. symbol"],
+      name: item["2. name"],
+      type: item["3. type"],
+      region: item["4. region"],
+      marketOpen: item["5. marketOpen"],
+      marketClose: item["6. marketClose"],
+      timezone: item["7. timezone"],
+      currency: item["8. currency"],
+      matchScore: item["9. matchScore"],
+    })
+  );
+
+  return {
+    searchResults: trasformedData,
+    isLoadingSearchResults: isLoading,
+    errorLoadingSearchResults: error,
   };
 };

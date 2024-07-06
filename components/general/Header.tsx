@@ -4,7 +4,7 @@ import { Pressable, View } from "react-native";
 import { H2, Image } from "tamagui";
 import Constants from "expo-constants";
 
-export const SearchHeader: React.FC = () => {
+export const Header: React.FC = () => {
   return (
     <View
       style={{
