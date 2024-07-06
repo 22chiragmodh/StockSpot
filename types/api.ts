@@ -3,7 +3,7 @@ import { CompanyMetadata, CompanyOverview, StockData } from ".";
 export type TopGainersAndLosersResponse = {
   top_gainers: StockData[];
   top_losers: StockData[];
-  actively_traded: StockData[];
+  most_actively_traded: StockData[];
 };
 
 export type CompanyOverviewResponse = CompanyOverview;

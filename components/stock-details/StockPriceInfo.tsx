@@ -35,15 +35,25 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
   );
 
   const { series, test, isSeriesLoading, seriesLoadingError } =
-    useTimeSeriesData(activeTimeOption, "IBM");
+    useTimeSeriesData(activeTimeOption, ticker);
 
   const price = "150.00";
   const change_amount = "5.0";
   const change_percentage = "3.45";
   const isPositiveGain = parseFloat(change_amount) > 0;
-
+  const getTabsUI = () => {
+    return (
+      <TabsAdvancedBackground
+        currentTab={activeTimeOption}
+        setCurrentTab={(tab) =>
+          setActiveTimeOption(tab as TimeSeriesDataIntervals)
+        }
+        data={TIME_OPTIONS}
+      />
+    );
+  };
   if (isSeriesLoading) {
-    return <Skeleton height={400} width="100%" radius={24} colorMode="light" />;
+    return <Skeleton height={340} width="100%" radius={24} colorMode="light" />;
   }
 
   if (seriesLoadingError || !series?.length) {
@@ -59,7 +69,7 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
           backgroundColor: "#fff",
           borderRadius: 24,
           overflow: "hidden",
-          height: 400,
+          height: 340,
         }}
       >
         <View
@@ -75,12 +85,6 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
             loop
           />
         </View>
-        <Text>Failed to load chart data</Text>
-        <Text color="black">{seriesLoadingError?.toString()}</Text>
-        <Text color="black">{series?.length.toString()}</Text>
-        <Text color="black">
-          {test ? "THIS: " + Object.values(test).toString() : "NA"}
-        </Text>
       </View>
     );
   }
@@ -211,13 +215,6 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
           </View>
         )}
       </View>
-      <TabsAdvancedBackground
-        currentTab={activeTimeOption}
-        setCurrentTab={(tab) =>
-          setActiveTimeOption(tab as TimeSeriesDataIntervals)
-        }
-        data={TIME_OPTIONS}
-      />
     </View>
   );
 };

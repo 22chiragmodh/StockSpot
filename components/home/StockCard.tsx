@@ -6,7 +6,11 @@ import { H3, H4, H6, Image, Text } from "tamagui";
 
 import { StockData } from "@/types";
 import { formatCurrency } from "@/utils/formatCurrenmcy";
-import { IconTriangle, IconTriangleFilled } from "@tabler/icons-react-native";
+import {
+  IconLivePhoto,
+  IconTriangle,
+  IconTriangleFilled,
+} from "@tabler/icons-react-native";
 import { H2 } from "tamagui";
 import { useCompanyMetaFromTicker } from "@/hooks/query";
 import { Skeleton } from "moti/skeleton";
@@ -15,7 +19,8 @@ export const StockCard = ({ data }: { data: StockData }) => {
   const isPositiveGain = parseFloat(data.change_amount) > 0;
   const ICON_SIZE = 55;
 
-  const { companyData } = useCompanyMetaFromTicker(data.ticker);
+  const { companyData, isLoadingCompanyData, errorLoadingCompanyData } =
+    useCompanyMetaFromTicker(data.ticker);
 
   return (
     <Pressable onPress={() => router.push(`/${data.ticker}`)}>
@@ -35,7 +40,16 @@ export const StockCard = ({ data }: { data: StockData }) => {
             height: ICON_SIZE,
           }}
         >
-          {companyData?.image ? (
+          {isLoadingCompanyData ? (
+            <Skeleton
+              colorMode="light"
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+              radius="round"
+            />
+          ) : errorLoadingCompanyData || !companyData?.image ? (
+            <IconLivePhoto size={ICON_SIZE} color="rgba(6,89,233,0.7)" />
+          ) : (
             <Image
               source={{
                 uri: companyData.image,
@@ -50,23 +64,20 @@ export const StockCard = ({ data }: { data: StockData }) => {
                 } as CSSProperties
               }
             />
-          ) : (
-            <Skeleton
-              colorMode="light"
-              width={ICON_SIZE}
-              height={ICON_SIZE}
-              radius="round"
-            />
           )}
         </View>
         <View>
           <H3 fontSize={18}>{data.ticker}</H3>
-          {companyData?.name ? (
+          {isLoadingCompanyData ? (
+            <Skeleton colorMode="light" width={100} height={25} />
+          ) : errorLoadingCompanyData || !companyData?.name ? (
+            <H4 color="#888" fontWeight={400} fontSize={15}>
+              N/A
+            </H4>
+          ) : (
             <H4 color="#888" fontWeight={400} fontSize={15}>
               {companyData.name}
             </H4>
-          ) : (
-            <Skeleton colorMode="light" width={100} height={25} />
           )}
         </View>
         <View
