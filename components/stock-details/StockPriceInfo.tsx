@@ -85,6 +85,7 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
             loop
           />
         </View>
+        <Text>Error Loading Charts</Text>
       </View>
     );
   }

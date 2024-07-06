@@ -190,7 +190,9 @@ export const useOverview = (symbol: string) => {
     DividendDate: "2024-06-10",
     ExDividendDate: "2024-05-09",
   };
-  const { data, error } = useSWR<CompanyOverviewResponse>(
+  const { data, error, isLoading } = useSWR<
+    AxiosResponse<CompanyOverviewResponse>
+  >(
     [
       API_CONSTANTS.ALPHAVANTAGE_DATA,
       "get",
@@ -206,8 +208,9 @@ export const useOverview = (symbol: string) => {
   );
 
   return {
+    // overview: data?.data,
     overview: DATA,
-    isLoading: !error && !data,
+    isLoading: isLoading,
     isError: error,
   };
 };

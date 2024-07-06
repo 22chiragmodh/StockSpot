@@ -1,4 +1,6 @@
+import { Fundamentals } from "@/components/stock-details/Fundamentals";
 import { StockDetailsTopBar } from "@/components/stock-details/StockDetailsTopBar";
+import { StockOverview } from "@/components/stock-details/StockOverview";
 import { StockPriceInfo } from "@/components/stock-details/StockPriceInfo";
 import { useOverview } from "@/hooks/query";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -36,7 +38,7 @@ export default function TickerScreen() {
   //   stockPrices[0].value < stockPrices[stockPrices.length - 1].value;
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#F3F4F5" }}>
+    <ScrollView style={{ backgroundColor: "#F3F4F5" }}>
       <View
         style={{
           display: "flex",
@@ -89,8 +91,10 @@ export default function TickerScreen() {
         /> */}
         <StockDetailsTopBar ticker={ticker as string} />
         <StockPriceInfo ticker={ticker as string} />
+        <StockOverview ticker={ticker as string} />
+        <Fundamentals ticker={ticker as string} />
       </View>
-    </View>
+    </ScrollView>
   );
   // return (
   //   <SafeAreaView style={{ flex: 1, marginHorizontal: 20, marginBottom: 10 }}>
