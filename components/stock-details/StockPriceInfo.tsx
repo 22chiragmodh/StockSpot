@@ -36,11 +36,8 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
 
   const { series, test, isSeriesLoading, seriesLoadingError } =
     useTimeSeriesData(activeTimeOption, ticker);
+  console.log(series);
 
-  const price = "150.00";
-  const change_amount = "5.0";
-  const change_percentage = "3.45";
-  const isPositiveGain = parseFloat(change_amount) > 0;
   const getTabsUI = () => {
     return (
       <TabsAdvancedBackground
@@ -56,7 +53,7 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
     return <Skeleton height={340} width="100%" radius={24} colorMode="light" />;
   }
 
-  if (seriesLoadingError || !series?.length) {
+  if (seriesLoadingError || !series || series.length === 0) {
     return (
       <View
         style={{
@@ -89,133 +86,148 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
       </View>
     );
   }
+  if (series) {
+    const latestDataPoint = series![0];
+    const price = latestDataPoint.close;
+    const change_amount = (
+      latestDataPoint.close - latestDataPoint.open
+    ).toFixed(2);
+    const change_percentage = (
+      (parseFloat(change_amount) / latestDataPoint.open) *
+      100
+    ).toFixed(4);
+    const isPositiveGain = parseFloat(change_amount) >= 0;
 
-  return (
-    <View
-      style={{
-        flexDirection: "column",
-        gap: 16,
-      }}
-    >
+    return (
       <View
         style={{
-          display: "flex",
           flexDirection: "column",
           gap: 16,
-          width: "100%",
-          backgroundColor: "#fff",
-          borderRadius: 24,
-          overflow: "hidden",
         }}
       >
         <View
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: 20,
+            gap: 16,
+            width: "100%",
+            backgroundColor: "#fff",
+            borderRadius: 24,
+            overflow: "hidden",
           }}
         >
           <View
             style={{
+              display: "flex",
               flexDirection: "column",
-              gap: 4,
-              padding: 20,
-              paddingVertical: 25,
+              gap: 20,
             }}
           >
-            <Text fontSize={28}>{formatCurrency(price)}</Text>
             <View
               style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 16,
+                flexDirection: "column",
+                gap: 4,
+                padding: 20,
+                paddingVertical: 25,
               }}
             >
-              <Text fontWeight={500} fontSize={16} color="#222">
-                {`${isPositiveGain ? "+" : ""}${change_amount}`}
-              </Text>
+              <Text fontSize={28}>{formatCurrency(price)}</Text>
               <View
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                  gap: 6,
+                  gap: 16,
                 }}
               >
+                <Text fontWeight={500} fontSize={16} color="#222">
+                  {`${isPositiveGain ? "+" : ""}${change_amount}`}
+                </Text>
                 <View
                   style={{
-                    transform: isPositiveGain
-                      ? [{ rotate: "0deg" }]
-                      : [{ rotate: "180deg" }],
-                    marginBottom: 2,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 6,
                   }}
                 >
-                  <IconTriangleFilled
-                    size={12}
-                    color={isPositiveGain ? "#0765EB" : "#E84D75"}
-                    fill={isPositiveGain ? "#0765EB" : "#E84D75"}
-                  />
+                  <View
+                    style={{
+                      transform: isPositiveGain
+                        ? [{ rotate: "0deg" }]
+                        : [{ rotate: "180deg" }],
+                      marginBottom: 2,
+                    }}
+                  >
+                    <IconTriangleFilled
+                      size={12}
+                      color={isPositiveGain ? "#0765EB" : "#E84D75"}
+                      fill={isPositiveGain ? "#0765EB" : "#E84D75"}
+                    />
+                  </View>
+                  <Text
+                    style={{
+                      color: isPositiveGain ? "#0765EB" : "#E84D75",
+                    }}
+                    fontWeight={400}
+                    opacity={0.7}
+                    fontSize={16}
+                  >
+                    {change_percentage}%
+                  </Text>
                 </View>
-                <Text
-                  style={{
-                    color: isPositiveGain ? "#0765EB" : "#E84D75",
-                  }}
-                  fontWeight={400}
-                  opacity={0.7}
-                  fontSize={16}
-                >
-                  {change_percentage}%
-                </Text>
               </View>
             </View>
           </View>
-        </View>
 
-        {Platform.OS === "android" || Platform.OS === "ios" ? (
-          <View style={{ height: 200, position: "relative" }}>
-            <CartesianChart
-              data={series}
-              xKey="date"
-              yKeys={["open"]}
-              chartPressState={state as any}
+          {Platform.OS === "android" || Platform.OS === "ios" ? (
+            <View style={{ height: 200, position: "relative" }}>
+              <CartesianChart
+                data={series}
+                xKey="date"
+                yKeys={["open"]}
+                chartPressState={state as any}
+              >
+                {({ points, chartBounds }) => (
+                  <>
+                    {isActive ? (
+                      <ToolTip
+                        x={state.x?.position}
+                        y={state.y.open?.position}
+                      />
+                    ) : null}
+                    <Area
+                      points={points.open}
+                      y0={chartBounds.bottom}
+                      animate={{ type: "timing", duration: 300 }}
+                      curveType="natural"
+                      // color="red"
+                      color="rgba(6,89,233,0.2)"
+                    />
+                    <Line
+                      points={points.open}
+                      y0={chartBounds.bottom}
+                      color="rgba(6,89,233,0.8)"
+                      strokeWidth={3}
+                      curveType="natural"
+                      animate={{ type: "timing", duration: 300 }}
+                    />
+                  </>
+                )}
+              </CartesianChart>
+            </View>
+          ) : (
+            <View
+              style={{
+                height: 200,
+                position: "relative",
+                backgroundColor: "rgba(6,89,233,0.1)",
+                padding: 16,
+              }}
             >
-              {({ points, chartBounds }) => (
-                <>
-                  {isActive ? (
-                    <ToolTip x={state.x?.position} y={state.y.open?.position} />
-                  ) : null}
-                  <Area
-                    points={points.open}
-                    y0={chartBounds.bottom}
-                    animate={{ type: "timing", duration: 300 }}
-                    curveType="natural"
-                    // color="red"
-                    color="rgba(6,89,233,0.2)"
-                  />
-                  <Line
-                    points={points.open}
-                    y0={chartBounds.bottom}
-                    color="rgba(6,89,233,0.8)"
-                    strokeWidth={3}
-                    curveType="natural"
-                    animate={{ type: "timing", duration: 300 }}
-                  />
-                </>
-              )}
-            </CartesianChart>
-          </View>
-        ) : (
-          <View
-            style={{
-              height: 200,
-              position: "relative",
-              backgroundColor: "rgba(6,89,233,0.1)",
-              padding: 16,
-            }}
-          >
-            <Text>Chart not supported on this platform</Text>
-          </View>
-        )}
+              <Text>Chart not supported on this platform</Text>
+            </View>
+          )}
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
 };
