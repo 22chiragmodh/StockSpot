@@ -74,3 +74,21 @@ export type TimeSeriesDetails = {
   close: number;
   volume: number;
 };
+
+export enum SearchTermType {
+  EQUIY = "Equity",
+  MF = "Mutual Fund",
+  ETF = "ETF",
+}
+
+export type SearchItem = {
+  symbol: string;
+  name: string;
+  type: string;
+  region: string;
+  marketOpen: string;
+  marketClose: string;
+  timezone: string;
+  currency: string;
+  matchScore: string;
+};

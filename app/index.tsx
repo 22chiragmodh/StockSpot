@@ -1,4 +1,4 @@
-import { SearchHeader } from "@/components/general/SearchHeader";
+import { Header } from "@/components/general/Header";
 import GainersAndLosers from "@/components/home/GainersAndLosers";
 import { TrendingList } from "@/components/home/Trending";
 import { useHighlights } from "@/hooks/query";
@@ -14,7 +14,7 @@ export default function HomeScreen() {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "#F3F4F5" }}>
       <View>
-        <SearchHeader />
+        <Header />
         {errorLoadingHighlights ? (
           <View
             style={{

@@ -50,6 +50,7 @@ function RootLayoutNav() {
       <ThemeProvider value={DefaultTheme}>
         <Stack screenOptions={{}}>
           <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="search" options={{ headerShown: false }} />
           <Stack.Screen
             name="[ticker]/index"
             options={{ headerShown: false }}
