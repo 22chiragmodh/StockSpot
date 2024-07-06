@@ -145,7 +145,6 @@ export const Fundamentals = ({ ticker }: { ticker: string }) => {
                 {fundamental.title}
               </Text>
               <Text fontSize={14} fontWeight={600}>
-                Value:{" "}
                 {fundamental.value === null ||
                 fundamental.value === undefined ||
                 fundamental.value === "None"
@@ -176,7 +175,6 @@ export const Fundamentals = ({ ticker }: { ticker: string }) => {
                 {fundamental.title}
               </Text>
               <Text fontSize={14} fontWeight={600}>
-                Value:{" "}
                 {fundamental.value === null ||
                 fundamental.value === undefined ||
                 fundamental.value === "None"
