@@ -34,10 +34,8 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
     TIME_OPTIONS[0].value
   );
 
-  const { series, isSeriesLoading, seriesLoadingError } = useTimeSeriesData(
-    activeTimeOption,
-    "IBM"
-  );
+  const { series, test, isSeriesLoading, seriesLoadingError } =
+    useTimeSeriesData(activeTimeOption, "IBM");
 
   const price = "150.00";
   const change_amount = "5.0";
@@ -78,11 +76,11 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
           />
         </View>
         <Text>Failed to load chart data</Text>
-        {/* <Text color="black">{seriesLoadingError?.toString()}</Text>
+        <Text color="black">{seriesLoadingError?.toString()}</Text>
         <Text color="black">{series?.length.toString()}</Text>
         <Text color="black">
           {test ? "THIS: " + Object.values(test).toString() : "NA"}
-        </Text> */}
+        </Text>
       </View>
     );
   }
