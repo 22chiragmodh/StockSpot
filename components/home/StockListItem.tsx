@@ -77,7 +77,7 @@ export const StockListItem = ({ data }: { data: StockData }) => {
           ) : errorLoadingCompanyData || !companyData?.name ? (
             <H4 fontSize={16}>N/A</H4>
           ) : (
-            <H4 fontSize={16}>{companyData.name}</H4>
+            <H4 fontSize={16}>{companyData.ticker}</H4>
           )}
           <H4 color="#888" fontWeight={400} fontSize={14}>
             {data.ticker}
