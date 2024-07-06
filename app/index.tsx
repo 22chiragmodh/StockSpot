@@ -1,13 +1,11 @@
-import React from "react";
-import { SafeAreaView, StatusBar, View } from "react-native";
-import LottieView from "lottie-react-native";
-
-import { ScrollView, Text } from "tamagui";
-
 import { SearchHeader } from "@/components/general/SearchHeader";
 import GainersAndLosers from "@/components/home/GainersAndLosers";
 import { TrendingList } from "@/components/home/Trending";
 import { useHighlights } from "@/hooks/query";
+import LottieView from "lottie-react-native";
+import React from "react";
+import { View } from "react-native";
+import { ScrollView, Text } from "tamagui";
 
 const LOTTIE_SIZE = 250;
 export default function HomeScreen() {
