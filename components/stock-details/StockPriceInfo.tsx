@@ -227,6 +227,8 @@ export const StockPriceInfo = ({ ticker }: { ticker: string }) => {
             </View>
           )}
         </View>
+
+        {getTabsUI()}
       </View>
     );
   }
