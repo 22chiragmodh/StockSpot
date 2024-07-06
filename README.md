@@ -103,4 +103,30 @@ To start the project, run:
 ```sh
 npx expo start
 ```
-   
+
+#### 1. Top Gainers, Losers & Actively Traded Stock Screen with Lazzy Loading :
+
+<p >
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/88e63c41-6898-4c27-8911-8fd57f9de310" height="300">
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/8ae62561-57a6-483c-a598-e719f55ed445" height="300">
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/d6c20e6e-ff9d-4306-bccd-57a3454a86f4" height="300">
+</p>
+
+
+#### 2. Stock Overview Screen:
+
+<p>
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/4e032d93-0d89-4716-bdfa-07e2a265895b" height="300">
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/1d05a244-0f24-457a-9221-4d81b4546940" height="300">
+</p>
+
+
+
+#### 3. Stock Search Screen by using query + Tab field value : 
+<p >
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/58f1bf0f-9e53-4cbe-97b6-0844631e6c96" height="300">
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/e5da4111-3a6d-41f3-b07a-bed8d187cb36" height="300">
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/79d8bc12-2332-48de-a3c6-516069ec62e4" height="300">
+</p>
+
+   ### Screen Recording of the Application: [click link](https://drive.google.com/file/d/1Y-cHqjKp2_U0S0dvIneDnHctbKx54KRv/view?usp=drive_link)
