@@ -66,7 +66,7 @@ export const useHighlights = () => {
         volume: "2000000",
       },
     ],
-    actively_traded: [
+    most_actively_traded: [
       {
         ticker: "AAPL",
         price: "150.00",
@@ -105,7 +105,9 @@ export const useHighlights = () => {
     ],
   };
 
-  const { data, error, isLoading } = useSWR<TopGainersAndLosersResponse>(
+  const { data, error, isLoading } = useSWR<
+    AxiosResponse<TopGainersAndLosersResponse>
+  >(
     [
       API_CONSTANTS.ALPHAVANTAGE_DATA,
       "get",
@@ -116,13 +118,18 @@ export const useHighlights = () => {
         },
       },
     ],
-    genericAPIFetcher
+    genericAPIFetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
   );
 
   return {
-    gainers: tempTopGainersAndLosersData?.top_gainers,
-    losers: tempTopGainersAndLosersData?.top_losers,
-    trending: tempTopGainersAndLosersData?.actively_traded,
+    gainers: data?.data?.top_gainers,
+    losers: data?.data?.top_losers,
+    trending: data?.data?.most_actively_traded,
     isLoadingHighlights: isLoading,
     errorLoadingHighlights: error,
   };
@@ -246,7 +253,12 @@ export const useTimeSeriesData = (
         params,
       },
     ],
-    genericAPIFetcher
+    genericAPIFetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
   );
 
   let result = data?.data[interval];
@@ -270,7 +282,9 @@ export const useTimeSeriesData = (
 };
 
 export const useCompanyMetaFromTicker = (ticker: string) => {
-  const { data, error } = useSWR<AxiosResponse<CompanyMetadataResponse>>(
+  const { data, error, isLoading } = useSWR<
+    AxiosResponse<CompanyMetadataResponse>
+  >(
     [
       API_CONSTANTS.API_NINJA_LOGO,
       "get",
@@ -293,7 +307,7 @@ export const useCompanyMetaFromTicker = (ticker: string) => {
 
   return {
     companyData: data?.data?.[0] as CompanyMetadata | undefined,
-    isLoading: !error && !data,
-    isError: error,
+    isLoadingCompanyData: isLoading,
+    errorLoadingCompanyData: error,
   };
 };

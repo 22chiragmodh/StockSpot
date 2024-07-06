@@ -48,7 +48,7 @@ export const TrendingList = () => {
                   key={index}
                 />
               ))
-          : trending.map((item) => (
+          : trending?.map((item) => (
               <StockListItem data={item} key={item.ticker} />
             ))}
       </YStack>
