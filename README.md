@@ -34,27 +34,37 @@ This project uses the Axiforma font.
 
 This project utilizes several third-party libraries to enhance its functionality and development experience:
 
-#### 1. [React Native Paper](https://callstack.github.io/tamagui/docs/guides/getting-started/) 🔗
+#### 1. [Lottie React Native](https://github.com/lottie-react-native/lottie-react-native) 🔗
 
 - **Why:**
-  - Provides a collection of customizable and easily implementable UI components.
-  - Designed to follow Material Design guidelines, making it ideal for creating modern and appealing user interfaces.
+  - Easily add high-quality animations to React Native apps.
+  - Ideal for creating animated error highlights and other engaging animations.
 
 - **Usage:**
-  - Used for creating consistent and visually appealing UI components like buttons, text inputs, and other interactive elements.
-  - **Key point:** Simplifies the creation of a professional-looking UI with minimal configuration.
+  - Used for displaying animated error highlights view.
+  - **Key point:** Enhances user experience with visually appealing animations.
 
-#### 2. [Expo Router](https://docs.expo.dev/tutorial/introduction/) 🔗
+#### 2. [Moti](https://moti.fyi/) 🔗
 
 - **Why:**
-  - Simplifies navigation in React Native projects by using a file-based routing system, similar to popular web frameworks.
-  - Enhances maintainability and scalability of navigation logic.
+  - Simplifies animations in React Native.
+  - Provides a clean and concise API for creating complex animations with ease.
 
 - **Usage:**
-  - Define routes in a more intuitive way using the file structure.
-  - **Key point:** Provides a clean and maintainable way to manage navigation in React Native projects.
+  - Used to show skeleton loading states in the UI.
+  - **Key point:** Improves user experience by providing smooth and visually appealing loading states.
 
-#### 3. [SWR](https://swr.vercel.app/docs/getting-started) 🔗
+#### 3. [Tamagui](https://tamagui.dev/) 🔗
+
+- **Why:**
+  - A library for creating responsive and beautifully designed UIs with React Native.
+  - Simplifies the theming and layout process with a compelling set of tools.
+
+- **Usage:**
+  - Used to create awesome UI and themes.
+  - **Key point:** Streamlines the process of building responsive and visually consistent UIs.
+
+#### 4. [SWR](https://swr.vercel.app/docs/getting-started) 🔗
 
 - **Why:**
   - Offers powerful data fetching and caching capabilities, making it easy to handle remote data.
@@ -64,7 +74,19 @@ This project utilizes several third-party libraries to enhance its functionality
   - Fetch data from APIs with minimal configuration and manage cache automatically.
   - **Key point:** Simplifies handling of remote data fetching while enhancing performance.
 
-#### 4. [react-native-gifted-charts](https://www.npmjs.com/package/react-native-gifted-charts) 🔗
+#### 5. [Expo Router](https://docs.expo.dev/tutorial/introduction/) 🔗
+
+- **Why:**
+  - Simplifies navigation in React Native projects by using a file-based routing system, similar to popular web frameworks.
+  - Enhances maintainability and scalability of navigation logic.
+
+- **Usage:**
+  - Define routes in a more intuitive way using the file structure.
+  - **Key point:** Provides a clean and maintainable way to manage navigation in React Native projects.
+
+
+
+#### 6. [react-native-gifted-charts](https://www.npmjs.com/package/react-native-gifted-charts) 🔗
 
 - **Why:**
   - Provides beautifully crafted and easy-to-use chart components for React Native.
