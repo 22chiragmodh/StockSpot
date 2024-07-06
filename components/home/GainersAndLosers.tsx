@@ -79,7 +79,12 @@ const GainersAndLosers = () => {
                   ? new Array(3)
                       .fill(0)
                       .map((_, index) => (
-                        <Skeleton height={220} width={200} colorMode="light" />
+                        <Skeleton
+                          height={220}
+                          width={200}
+                          colorMode="light"
+                          key={index}
+                        />
                       ))
                   : listItems?.map((item) => (
                       <StockCard data={item} key={item.ticker} />

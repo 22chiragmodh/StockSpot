@@ -41,7 +41,12 @@ export const TrendingList = () => {
           ? new Array(5)
               .fill(0)
               .map((_, index) => (
-                <Skeleton height={52} width="100%" colorMode="light" />
+                <Skeleton
+                  height={52}
+                  width="100%"
+                  colorMode="light"
+                  key={index}
+                />
               ))
           : trending.map((item) => (
               <StockListItem data={item} key={item.ticker} />

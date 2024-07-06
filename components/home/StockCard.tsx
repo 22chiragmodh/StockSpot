@@ -60,9 +60,9 @@ export const StockCard = ({ data }: { data: StockData }) => {
           )}
         </View>
         <View>
-          <H3 fontSize={19}>{data.ticker}</H3>
+          <H3 fontSize={18}>{data.ticker}</H3>
           {companyData?.name ? (
-            <H4 color="#888" fontWeight={300} fontSize={16}>
+            <H4 color="#888" fontWeight={400} fontSize={15}>
               {companyData.name}
             </H4>
           ) : (
@@ -103,7 +103,7 @@ export const StockCard = ({ data }: { data: StockData }) => {
               style={{
                 color: isPositiveGain ? "#0765EB" : "#E84D75",
               }}
-              fontWeight={300}
+              fontWeight={400}
               opacity={0.7}
               fontSize={14}
             >

@@ -51,7 +51,7 @@ function RootLayoutNav() {
         <Stack screenOptions={{}}>
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen
-            name="[productId]/index"
+            name="[ticker]/index"
             options={{ headerShown: false }}
           />
         </Stack>
