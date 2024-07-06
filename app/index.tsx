@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, View } from "react-native";
+import { SafeAreaView, StatusBar, View } from "react-native";
 import LottieView from "lottie-react-native";
 
 import { ScrollView, Text } from "tamagui";

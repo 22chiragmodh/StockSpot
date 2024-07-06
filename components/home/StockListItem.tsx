@@ -27,7 +27,7 @@ export const StockListItem = ({ data }: { data: StockData }) => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          gap: 20,
+          gap: 16,
           justifyContent: "space-between",
           width: "100%",
         }}
@@ -70,11 +70,11 @@ export const StockListItem = ({ data }: { data: StockData }) => {
           }}
         >
           {companyData?.name ? (
-            <H3 fontSize={18}>{companyData.name}</H3>
+            <H3 fontSize={16}>{companyData.name}</H3>
           ) : (
             <Skeleton colorMode="light" width={100} height={25} />
           )}
-          <H4 color="#888" fontWeight={400} fontSize={15}>
+          <H4 color="#888" fontWeight={400} fontSize={14}>
             {data.ticker}
           </H4>
         </View>
@@ -84,7 +84,7 @@ export const StockListItem = ({ data }: { data: StockData }) => {
             alignItems: "flex-end",
           }}
         >
-          <Text fontSize={16}>{formatCurrency(data.price)}</Text>
+          <Text fontSize={15}>{formatCurrency(data.price)}</Text>
           <View
             style={{
               flexDirection: "row",
@@ -97,11 +97,11 @@ export const StockListItem = ({ data }: { data: StockData }) => {
                 transform: isPositiveGain
                   ? [{ rotate: "0deg" }]
                   : [{ rotate: "180deg" }],
-                marginBottom: 2,
+                marginBottom: 1,
               }}
             >
               <IconTriangleFilled
-                size={12}
+                size={13}
                 color={isPositiveGain ? "#0765EB" : "#E84D75"}
                 fill={isPositiveGain ? "#0765EB" : "#E84D75"}
               />
@@ -110,7 +110,7 @@ export const StockListItem = ({ data }: { data: StockData }) => {
               style={{
                 color: isPositiveGain ? "#0765EB" : "#E84D75",
               }}
-              fontWeight={300}
+              fontWeight={400}
               opacity={0.7}
               fontSize={14}
             >
