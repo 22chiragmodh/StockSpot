@@ -133,4 +133,9 @@ npx expo start
   <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/79d8bc12-2332-48de-a3c6-516069ec62e4" height="300">
 </p>
 
-   ### Screen Recording of the Application: [click link](https://drive.google.com/file/d/1Y-cHqjKp2_U0S0dvIneDnHctbKx54KRv/view?usp=drive_link)
+### Screen Recording of the Application
+[Click here to view the screen recording](https://drive.google.com/file/d/1Y-cHqjKp2_U0S0dvIneDnHctbKx54KRv/view?usp=drive_link)
+
+## Updated Link
+[Click here to view the updated link](https://drive.google.com/file/d/16Gq8y7FWXZuulPRi67syv1SNh1qNvZe6/view?usp=sharing)
+    
