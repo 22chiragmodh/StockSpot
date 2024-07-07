@@ -113,10 +113,14 @@ npx expo start
 </p>
 
 
-#### 2. Stock Overview Screen:
+#### 2. Stock Overview Screen & check Stocks Charts Daily, Weekely, Monthly and Yearly:
 
 <p>
-  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/4e032d93-0d89-4716-bdfa-07e2a265895b" height="300">
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/3959f7ef-d6fe-40b3-b09b-c0ef5f99bda3" height="300">
+  <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/26a70c68-9fcf-4619-8a90-ada196882a2a" height="300">
+ <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/6420f4bc-72e3-4591-84ec-3e7e5d80ab79" height="300">
+
+
   <img src="https://github.com/22chiragmodh/StockSpot/assets/91516739/1d05a244-0f24-457a-9221-4d81b4546940" height="300">
 </p>
 
