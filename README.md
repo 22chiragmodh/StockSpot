@@ -136,6 +136,8 @@ npx expo start
 ### Screen Recording of the Application
 [Click here to view the screen recording](https://drive.google.com/file/d/1Y-cHqjKp2_U0S0dvIneDnHctbKx54KRv/view?usp=drive_link)
 
-## Updated Link
+### Updated Link
 [Click here to view the updated link](https://drive.google.com/file/d/16Gq8y7FWXZuulPRi67syv1SNh1qNvZe6/view?usp=sharing)
     
+### Download Apk here:
+[Click here to download the apk](https://drive.google.com/file/d/14JkHPtzlUyLM7-bmW7bF4D0YZTHY7o6w/view?usp=sharing)
