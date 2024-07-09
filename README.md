@@ -140,4 +140,4 @@ npx expo start
 [Click here to view the updated link](https://drive.google.com/file/d/16Gq8y7FWXZuulPRi67syv1SNh1qNvZe6/view?usp=sharing)
     
 ### Download Apk here:
-[Click here to download the apk](https://drive.google.com/file/d/14JkHPtzlUyLM7-bmW7bF4D0YZTHY7o6w/view?usp=sharing)
+[Click here to download the apk](https://drive.google.com/file/d/1vuV64-ZFJy9UpDRBYMbAIKF-EiGyA9xt/view?usp=sharing)
