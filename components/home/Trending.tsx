@@ -4,9 +4,9 @@ import { View } from "react-native";
 import { router } from "expo-router";
 import { Button, H3, YStack } from "tamagui";
 
-import { useHighlights } from "@/hooks/query";
 import { Skeleton } from "moti/skeleton";
 import { StockListItem } from "./StockListItem";
+import { useHighlights } from "@/hooks/highlights.query";
 
 export const TrendingList = () => {
   const { trending, isLoadingHighlights } = useHighlights();
@@ -48,7 +48,7 @@ export const TrendingList = () => {
                   key={index}
                 />
               ))
-          : trending?.map((item) => (
+          : trending?.map((item: any) => (
               <StockListItem data={item} key={item.ticker} />
             ))}
       </YStack>

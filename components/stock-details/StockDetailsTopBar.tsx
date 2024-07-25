@@ -4,10 +4,10 @@ import { Pressable, View } from "react-native";
 import { router } from "expo-router";
 import { H3, H4, Image } from "tamagui";
 
-import { useCompanyMetaFromTicker } from "@/hooks/query";
 import { IconArrowLeft } from "@tabler/icons-react-native";
 import Constants from "expo-constants";
 import { Skeleton } from "moti/skeleton";
+import { useCompanyMetaFromTicker } from "@/hooks/companyMetaData.query";
 
 const ICON_SIZE = 60;
 

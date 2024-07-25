@@ -7,9 +7,10 @@ import { H3, H4, Image, Text } from "tamagui";
 import { StockData } from "@/types";
 import { formatCurrency } from "@/utils/formatCurrenmcy";
 import { IconTriangleFilled, IconLivePhoto } from "@tabler/icons-react-native";
-import { useCompanyMetaFromTicker, useHighlights } from "@/hooks/query";
-import { Skeleton } from "moti/skeleton";
 
+import { Skeleton } from "moti/skeleton";
+import { LazyloadView } from "react-native-scroll-lazy";
+import { useCompanyMetaFromTicker } from "@/hooks/companyMetaData.query";
 const ICON_SIZE = 36;
 export const StockListItem = ({ data }: { data: StockData }) => {
   const isPositiveGain = parseFloat(data.change_amount) > 0;
@@ -23,7 +24,9 @@ export const StockListItem = ({ data }: { data: StockData }) => {
         width: "100%",
       }}
     >
-      <View
+      <LazyloadView
+        host="lazyload-screen"
+        key={data.ticker}
         style={{
           display: "flex",
           flexDirection: "row",
@@ -123,7 +126,7 @@ export const StockListItem = ({ data }: { data: StockData }) => {
             </Text>
           </View>
         </View>
-      </View>
+      </LazyloadView>
     </Pressable>
   );
 };

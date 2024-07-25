@@ -12,8 +12,10 @@ import {
   IconTriangleFilled,
 } from "@tabler/icons-react-native";
 import { H2 } from "tamagui";
-import { useCompanyMetaFromTicker } from "@/hooks/query";
+
 import { Skeleton } from "moti/skeleton";
+import { LazyloadView } from "react-native-scroll-lazy";
+import { useCompanyMetaFromTicker } from "@/hooks/companyMetaData.query";
 
 export const StockCard = ({ data }: { data: StockData }) => {
   const isPositiveGain = parseFloat(data.change_amount) > 0;
@@ -24,7 +26,9 @@ export const StockCard = ({ data }: { data: StockData }) => {
 
   return (
     <Pressable onPress={() => router.push(`/${data.ticker}`)}>
-      <View
+      <LazyloadView
+        key={data.ticker}
+        host="lazyload-list"
         style={{
           flexDirection: "column",
           gap: 24,
@@ -122,7 +126,7 @@ export const StockCard = ({ data }: { data: StockData }) => {
             </Text>
           </View>
         </View>
-      </View>
+      </LazyloadView>
     </Pressable>
   );
 };

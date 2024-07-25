@@ -7,8 +7,9 @@ import { H3, H4, Image, Text } from "tamagui";
 import { SearchItem, StockData } from "@/types";
 import { formatCurrency } from "@/utils/formatCurrenmcy";
 import { IconTriangleFilled, IconLivePhoto } from "@tabler/icons-react-native";
-import { useCompanyMetaFromTicker, useHighlights } from "@/hooks/query";
+
 import { Skeleton } from "moti/skeleton";
+import { useCompanyMetaFromTicker } from "@/hooks/companyMetaData.query";
 
 const ICON_SIZE = 36;
 export const SearchListItem = ({ data }: { data: SearchItem }) => {

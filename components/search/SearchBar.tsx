@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Pressable, View } from "react-native";
 
 import { router } from "expo-router";
@@ -6,6 +6,20 @@ import { Input } from "tamagui";
 
 import { IconArrowLeft } from "@tabler/icons-react-native";
 import Constants from "expo-constants";
+
+// function debounce<T extends (...args: any[]) => void>(
+//   func: T,
+//   delay: number
+// ): (...args: Parameters<T>) => void {
+//   let timeout: ReturnType<typeof setTimeout>;
+//   console.log("recreated");
+//   return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+//     if (timeout) clearTimeout(timeout);
+//     timeout = setTimeout(() => {
+//       func.apply(this, args);
+//     }, delay);
+//   };
+// }
 
 export const SearchBar = ({
   query,

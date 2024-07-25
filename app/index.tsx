@@ -1,18 +1,22 @@
 import { Header } from "@/components/general/Header";
 import GainersAndLosers from "@/components/home/GainersAndLosers";
 import { TrendingList } from "@/components/home/Trending";
-import { useHighlights } from "@/hooks/query";
+
 import LottieView from "lottie-react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import { ScrollView, Text } from "tamagui";
-
+import { LazyloadScrollView } from "react-native-scroll-lazy";
+import { useHighlights } from "@/hooks/highlights.query";
 const LOTTIE_SIZE = 250;
 export default function HomeScreen() {
   const { errorLoadingHighlights } = useHighlights();
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "#F3F4F5" }}>
+    <LazyloadScrollView
+      style={{ flex: 1, backgroundColor: "#F3F4F5" }}
+      name="lazyload-screen"
+    >
       <View>
         <Header />
         {errorLoadingHighlights ? (
@@ -68,6 +72,6 @@ export default function HomeScreen() {
           </View>
         )}
       </View>
-    </ScrollView>
+    </LazyloadScrollView>
   );
 }

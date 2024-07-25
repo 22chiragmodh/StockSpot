@@ -1,6 +1,7 @@
-import { useHighlights } from "@/hooks/query";
 import React, { useMemo } from "react";
 import { useWindowDimensions } from "react-native";
+import { LazyloadScrollView, LazyloadView } from "react-native-scroll-lazy";
+
 import {
   ScrollView,
   Separator,
@@ -11,6 +12,7 @@ import {
 } from "tamagui";
 import { StockCard } from "./StockCard";
 import { Skeleton } from "moti/skeleton";
+import { useHighlights } from "@/hooks/highlights.query";
 
 const OPTIONS = [
   {
@@ -73,7 +75,11 @@ const GainersAndLosers = () => {
               marginTop: 16,
             }}
           >
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <LazyloadScrollView
+              name="lazyload-list"
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            >
               <XStack gap={12}>
                 {isLoadingHighlights
                   ? new Array(3)
@@ -86,11 +92,11 @@ const GainersAndLosers = () => {
                           key={index}
                         />
                       ))
-                  : listItems?.map((item) => (
+                  : listItems?.map((item: any) => (
                       <StockCard data={item} key={item.ticker} />
                     ))}
               </XStack>
-            </ScrollView>
+            </LazyloadScrollView>
           </Tabs.Content>
         ))}
       </Tabs>
